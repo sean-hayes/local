@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mysqladmin -uroot -p --protocol=tcp shutdown
+

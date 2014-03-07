@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+$ROOTDIR/apache.server $1
+$ROOTDIR/mysql.server $1
+
