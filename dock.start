@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+docker ps > /dev/null || docker-machine start default
+docker ps > /dev/null || eval "$(docker-machine env default)"
+
+docker ps
+
