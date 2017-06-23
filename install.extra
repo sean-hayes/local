@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sudo apt-get update
+
+# tools
+sudo apt-get -qq install nmap jq unzip
