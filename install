@@ -1,0 +1,61 @@
+#!/bin/bash
+
+sudo apt-get update
+
+# environment
+echo ":set nocompatible" >> ~/.vimrc
+
+# Git
+sudo apt-get -qq install git
+
+# Nvidia Drivers
+sudo apt-get -qq install software-properties-gtk software-properties-common
+software-properties-gtk --open-tab=4
+
+# Google Chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get update
+sudo apt-get -qq install google-chrome-stable
+# TODO: automatically add to dock?
+
+# Atom.io
+sudo apt-get -qq install build-essential git libgnome-keyring-dev fakeroot rpm libx11-dev libxkbfile-dev
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+source ~/.bashrc && command -v nvm
+nvm install 6.10
+npm install -g npm
+npm config set python /usr/bin/python2 -g
+
+cd ~ && mkdir -p src && cd src
+git clone https://github.com/atom/atom.git &&
+cd atom &&
+script/build --compress-artifacts --create-debian-package
+sudo dpkg -i out/atom-amd64.deb &&
+sudo apt-get -f install
+cd ~ && rm -rf src/atom
+atom --version
+
+# python
+sudo apt-get -qq install python-pip
+sudo pip install --upgrade pip
+sudo pip install pycodestyle pylint
+
+# Atom comes with the apm package manager to install Atom packages powered by atom.io
+apm install nord-atom-ui
+apm install minimap highlight-selected pretty-json
+apm install autocomplete-python linter-pycodestyle linter-pylint
+apm install linter-eslint
+# TODO: integrate JS gulp
+
+# Consolas Font
+sudo apt-get -qq install font-manager cabextract
+cd /tmp && wget http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27C9F8C8F696/PowerPointViewer.exe
+cabextract -L -F ppviewer.cab PowerPointViewer.exe; cabextract -L -F "CONSOLA*.TTF" ppviewer.cab
+sudo mkdir /usr/share/fonts/windows
+sudo cp /tmp/consola*.ttf /usr/share/fonts/windows/
+cd /usr/share/fonts/windows
+sudo mkfontdir
+sudo mkfontscale
+sudo fc-cache -fv
+rm /tmp/consola*.ttf && rm /tmp/PowerPointViewer.exe && rm /tmp/ppviewer.cab
