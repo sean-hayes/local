@@ -4,3 +4,4 @@ sudo apt-get update
 
 # tools
 sudo apt-get -qq install nmap jq unzip
+sudo apt-get -qq install virtualbox virtualbox-ext-pack
