@@ -39,7 +39,11 @@ atom --version
 # python
 sudo apt-get -qq install python-pip
 sudo pip install --upgrade pip
-sudo pip install pycodestyle pylint
+sudo pip install pycodestyle pylint virtualenv
+
+sudo apt-get -qq install python3-pip
+sudo pip3 install --upgrade pip
+sudo pip3 install pycodestyle pylint virtualenv
 
 # Atom comes with the apm package manager to install Atom packages powered by atom.io
 apm install nord-atom-ui

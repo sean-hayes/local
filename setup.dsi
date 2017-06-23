@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p ~/.dsi
+chmod 1700 ~/.dsi
