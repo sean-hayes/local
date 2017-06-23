@@ -5,3 +5,7 @@ sudo apt-get update
 # tools
 sudo apt-get -qq install nmap jq unzip
 sudo apt-get -qq install virtualbox virtualbox-ext-pack
+
+#
+wget https://releases.hashicorp.com/vagrant/1.9.5/vagrant_1.9.5_x86_64.deb -O ~/Downloads/vagrant.deb
+sudo dpkg -i /home/sean/Downloads/vagrant.deb && sudo apt-get install -f && rm ~/Downloads/vagrant.deb
