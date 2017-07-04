@@ -1,0 +1,12 @@
+#!/bin/bash
+
+BOX=$1
+OLDDIR=$(pwd)
+BOXDIR=~/"dev/env/$BOX"
+
+if [ -d "$BOXDIR" ]; then
+    cd "$BOXDIR" && vagrant status --machine-readable | grep state,running || vagrant up
+    cd "$OLDDIR"
+else
+    echo "$BOX does not exist"
+fi
