@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# use the HTTPS source in the event we do not have keys setup yet as
+# this script is meant to be a provisioning script (early in the build)
+git clone https://github.com/sean-hayes/local.git ~/dev/src/local
+
+# setup our local bin dir
+shopt -s extglob &&
+ln -s ~/dev/src/local/!(*.md) ~/bin/
+shopt -u extglob
