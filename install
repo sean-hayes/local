@@ -12,8 +12,11 @@ cat <<EOT | tee -a ~/.bashrc
 
 # posh-git-bash
 source ~/bin/git-prompt.sh
-PS1_BACKUP=\$PS1
-PROMPT_COMMAND='PS1=\$PS1_BACKUP\$(__posh_git_echo);PS1=\${PS1%% }" ";'\$PROMPT_COMMAND
+if [ -z "\$PS1_BACKUP" ]; then
+    PS1_BACKUP=\$PS1
+fi
+VIRTUAL_ENV_DISABLE_PROMPT=1
+PROMPT_COMMAND='PS1=\$(if [[ \$(basename "\$VIRTUAL_ENV" | tr -d "[:space:]" | wc -c) -ne 0 ]]; then echo "( \$(basename \$VIRTUAL_ENV) ) " ;fi)\$PS1_BACKUP\$(__posh_git_echo);PS1=\${PS1%% }" ";'\$PROMPT_COMMAND
 EOT
 
 cat <<EOT | tee -a ~/.bashrc
