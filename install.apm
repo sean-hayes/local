@@ -1,6 +1,6 @@
 apm install nord-atom-ui
-apm install minimap minimap-git-diff highlight-selected pretty-json
-apm install autocomplete-python python-indent linter-pycodestyle linter-pylint python-tools
+apm install minimap-plus minimap-git-diff highlight-selected pretty-json
+apm install autocomplete-python-jedi python-indent linter-pycodestyle linter-pylint python-tools
 apm install linter-eslint
 
 apm list
